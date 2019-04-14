@@ -1,18 +1,33 @@
 import * as fse from 'fs-extra'
 
+const xlsx = require('xlsx')
+export async function parseexcel(item: Buffer) {
+  var stream = xlsx.stream.to_json(item, { raw: true })
+  return new Promise(function(resolve, reject) {
+    if (stream != null) {
+      resolve(stream)
+    } else {
+      reject(Error('It broke'))
+    }
+  })
+}
+
+/*
 'use strict'
 const excelToJson = require('convert-excel-to-json')
 
 export async function parseexcel(item: Buffer) {
+  var stream = xlsx.stream.to_json(item, {raw:true});
+
+
+
   return new Promise(function(resolve, reject) {
     try {
       const output = excelToJson({
-        sourceFile: './testdata/excel/worldcities.xlsx',
-        header: {
-          rows: 1
-        }
+        sourceFile: 
       })
-      resolve(output)
+      console.log(output)
+     // resolve(output)
     } catch (error) {
       console.error(error)
     }
@@ -42,6 +57,8 @@ const output = excelToJson({
     }
 });
 console.log(JSON.stringify(output));
+\
+
 
 
 

@@ -60,7 +60,7 @@ export async function scanDir(configObjs: tapTypes.allConfigs, parser: any) {
         await writeJsonFile('exceltojson.json', parsedObj)
       })()
 
-      upload.upload()
+      //upload.upload()
       //call the funtion over here
     })
     // TODO: write STATE record

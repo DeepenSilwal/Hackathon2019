@@ -14,14 +14,18 @@ var bucketName = 'json' + uuid.v4();
 var keyName = 'exceltojson';
 function upload() {
     return __awaiter(this, void 0, void 0, function* () {
-        var bucketPromise = new AWS.S3({ apiVersion: '2006-03-01' }).createBucket({ Bucket: bucketName }).promise();
-        bucketPromise.then(function (data) {
+        var bucketPromise = new AWS.S3({ apiVersion: '2006-03-01' })
+            .createBucket({ Bucket: bucketName })
+            .promise();
+        bucketPromise
+            .then(function (data) {
             var objectParams = { Bucket: bucketName, Key: keyName, Body: 'Hello Worlds' };
             var uploadPromise = new AWS.S3({ apiVersion: '2006-03-01' }).putObject(objectParams).promise();
             uploadPromise.then(function (data) {
-                console.log("Successfully uploaded data to " + bucketName + "/" + keyName);
+                console.log('Successfully uploaded data to ' + bucketName + '/' + keyName);
             });
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err, err.stack);
         });
     });
@@ -42,5 +46,5 @@ bucketPromise.then(
   function(err) {
     console.error(err, err.stack);
 });
-*/ 
+*/
 //# sourceMappingURL=uploadjson.js.map

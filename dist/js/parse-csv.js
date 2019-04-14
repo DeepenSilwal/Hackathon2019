@@ -5,7 +5,8 @@ const fse = require("fs-extra");
 const csv = require('csvtojson');
 const input = '#welcome\n"1","2","3","4"\n"a","b","c","d"';
 let results = [];
-fse.createReadStream('./testdata/csv/testA.csv')
+fse
+    .createReadStream('./testdata/csv/testA.csv')
     .pipe(csv())
     .on('data', (data) => results.push(data))
     .on('end', () => {

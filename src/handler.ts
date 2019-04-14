@@ -39,7 +39,7 @@ export function hello(event: any, context: any, callback: any) {
 
 export function handleFileTrigger1(event: any, context: any, callback: any) {
   const response = new lambdaResponse()
-  let h = new hand(response)
+  //let h = new hand(response)
 }
 export function handleFileTrigger(event: any, context: any, callback: any) {
   const response = new lambdaResponse()
@@ -49,6 +49,8 @@ export function handleFileTrigger(event: any, context: any, callback: any) {
     console.log('File Contents: \n' + contents)
     parseexcel.parseexcel(contents).then(function(parsedObj: Object) {
       console.log('Parsed Contents: \n' + JSON.stringify(parsedObj))
+
+      //upload a function over here
       response.body = JSON.stringify(parsedObj)
     })
   }

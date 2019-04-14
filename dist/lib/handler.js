@@ -37,12 +37,12 @@ function hello(event, context, callback) {
 exports.hello = hello;
 function handleFileTrigger1(event, context, callback) {
     const response = new lambdaResponse();
-    //let h = new hand(response);
+    //let h = new hand(response)
 }
 exports.handleFileTrigger1 = handleFileTrigger1;
 function handleFileTrigger(event, context, callback) {
     const response = new lambdaResponse();
-    console.log(JSON.stringify(event));
+    //console.log(JSON.stringify(event));
     function handleFile(contents) {
         console.log('File Contents: \n' + contents);
         parseexcel.parseexcel(contents).then(function (parsedObj) {

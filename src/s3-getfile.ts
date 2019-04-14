@@ -14,7 +14,7 @@ import * as fse from 'fs-extra'
 // takes an S3 event (http://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html)
 // describing a file; returns a promise that will return the file content as its data
 export function getFilePromise(event: any) {
-  console.log("in s3-getfile");
+  console.log('in s3-getfile')
   //console.log(JSON.stringify(event))
 
   var notification = event.s3 //event.Records[0].s3;
@@ -24,21 +24,17 @@ export function getFilePromise(event: any) {
   // console.log("SES Notification:\n", JSON.stringify(sesNotification, null,
   // 2));
 
-  console.log(
-    'notificationKey: ',
-    notificationKey,
-    '   Bucket: ',
-    notification.bucket.name
-  )
+  console.log('notificationKey: ', notificationKey, '   Bucket: ', notification.bucket.name)
 
   // Retrieve the email from its bucket
 
-    return s3
+  return s3
     .getObject({ Bucket: notification.bucket.name, Key: notificationKey })
     .promise()
     .then(function(fileObject: object) {
       return fileObject
     })
+
     .then(function(value: any) {
       console.log('All is well!', value)
       return value.Body.toString()
@@ -48,6 +44,4 @@ export function getFilePromise(event: any) {
       console.log('getFilePromise error: ', error)
       return error
     })
-  
-  
 }
